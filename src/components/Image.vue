@@ -1,13 +1,13 @@
 <template>
+   <div v-if="src!==null&&src!==undefind">
       <div class="card">
-      <div class="card-image">
-         <div v-if="src!==null&&src!==undefind">
-        <figure class="image">
+        <div class="card-image">
+           <figure class="image">
           <img :src="src" alt="cute dog!" />
         </figure>
-        </div>
       </div>
     </div>
+  </div>
 </template>
 
 
