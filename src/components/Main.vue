@@ -1,8 +1,13 @@
 <template>
       <main>
+       <section className="section">
+        <div className="container">
+          <myForm @parentMethod="updateBreed"/>
+        </div>
+      </section>
       <section className="section">
         <div className="container">
-          <Gallery v-bind:urls="img_urls"/>
+          <Gallery v-bind:urls="this.pic"/>
         </div>
       </section>
     </main>
@@ -10,29 +15,49 @@
 
 
 <script>
+import Vue from 'vue'
+import axios from 'axios' 
+import VueAxios from 'vue-axios' 
 import Gallery from "./Gallery.vue";
+import myForm from "./myForm.vue";
+
+Vue.config.productionTip = false
+Vue.use(VueAxios, axios) 
+
+
 export default {
   name: 'myMain',
   components:{
       Gallery,
+      myForm,
     },
   data(){
     return{
-      img_urls : [
-  "https://images.dog.ceo/breeds/shiba/shiba-11.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-12.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-14.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-17.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-2.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-3i.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-4.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-5.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-6.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-7.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-8.jpg",
-  "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
-]
-      }
-   }
+      pic: null, 
+      breed: "shiba",  
+    }
+  }, 
+  methods: {
+    updateBreed (breed) {
+      this.breed = breed
+      axios.get(`https://dog.ceo/api/breed/${this.breed}/images/random/12`)
+    .then(function(response){
+      this.pic = response.data.message
+    }.bind(this))
+    .catch(function(error){
+      console.log(error)
+    })
+    }
+  },
+  mounted: function(){
+    //上と同じだから関数にしたい
+    axios.get(`https://dog.ceo/api/breed/${this.breed}/images/random/12`)
+    .then(function(response){
+      this.pic = response.data.message
+    }.bind(this))
+    .catch(function(error){
+      console.log(error)
+    })
+  },
 }
 </script>

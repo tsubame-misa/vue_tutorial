@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <myHeader/>
+     <myHeader/>
     <myMain/>
     <myFooter/>
   </div>
@@ -17,7 +17,7 @@ export default {
     myHeader,
     myFooter,
     myMain
-  }
+  },    
 }
 </script>
 
