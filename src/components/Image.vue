@@ -1,9 +1,11 @@
 <template>
-      <div className="card">
-      <div className="card-image">
-        <figure className="image">
+      <div class="card">
+      <div class="card-image">
+         <div v-if="src!==null&&src!==undefind">
+        <figure class="image">
           <img :src="src" alt="cute dog!" />
         </figure>
+        </div>
       </div>
     </div>
 </template>

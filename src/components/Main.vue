@@ -1,12 +1,12 @@
 <template>
       <main>
-       <section className="section">
-        <div className="container">
+       <section class="section">
+        <div class="container">
           <myForm @parentMethod="updateBreed"/>
         </div>
       </section>
-      <section className="section">
-        <div className="container">
+      <section class="section">
+        <div class="container">
           <Gallery v-bind:urls="this.pic"/>
         </div>
       </section>
@@ -61,3 +61,7 @@ export default {
   },
 }
 </script>
+
+<style>
+
+</style>
